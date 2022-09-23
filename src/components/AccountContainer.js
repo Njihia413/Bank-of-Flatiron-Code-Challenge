@@ -16,10 +16,17 @@ function AccountContainer() {
   }, [])
 
 
+//Create a new transaction
+function addNewTransaction (newTransaction) {
+  const updatedTransactions = [...transactions, newTransaction]
+  //console.log(updatedTransactions);
+  setTransactions(updatedTransactions);
+}  
+
   return (
     <div>
       <Search />
-      <AddTransactionForm />
+      <AddTransactionForm onAddTransaction={addNewTransaction} />
       <TransactionsList transactions={transactions}/>
     </div>
   );
