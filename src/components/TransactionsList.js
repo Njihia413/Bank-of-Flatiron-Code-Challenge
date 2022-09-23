@@ -2,10 +2,10 @@ import React from "react";
 import Transaction from "./Transaction";
 
 
-function TransactionsList({ transactions }) {
+function TransactionsList({ transactions, onDeleteTransaction }) {
 
   const transactionList = transactions.map((transaction) => (
-    <Transaction key={transaction.id} transaction={transaction}/>
+    <Transaction key={transaction.id} transaction={transaction} onDeleteTransaction={onDeleteTransaction} />
   ))
   
 
@@ -24,6 +24,9 @@ function TransactionsList({ transactions }) {
           </th>
           <th>
             <h3 className="ui center aligned header">Amount</h3>
+          </th>
+          <th>
+            <h3 className="ui center aligned header">Action</h3>
           </th>
         </tr>
         {/* render a list of <Transaction> components here */}

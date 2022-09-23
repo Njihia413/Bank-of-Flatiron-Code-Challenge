@@ -35,7 +35,8 @@ function AddTransactionForm({ onAddTransaction }) {
   }
   console.log(formData)
 
-  return (
+
+    return (
     <div className="ui segment">
       <form className="ui form" onSubmit={handleSubmit}>
         <div className="inline fields">

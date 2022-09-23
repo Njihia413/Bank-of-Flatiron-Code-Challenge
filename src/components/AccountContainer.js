@@ -19,15 +19,19 @@ function AccountContainer() {
 //Create a new transaction
 function addNewTransaction (newTransaction) {
   const updatedTransactions = [...transactions, newTransaction]
-  //console.log(updatedTransactions);
   setTransactions(updatedTransactions);
 }  
 
+//Delete a transaction
+function deleteTransaction(id) {
+  const updatedTransactions = transactions.filter(transaction => transaction.id !== id);
+  setTransactions(updatedTransactions);
+}
   return (
     <div>
       <Search />
       <AddTransactionForm onAddTransaction={addNewTransaction} />
-      <TransactionsList transactions={transactions}/>
+      <TransactionsList transactions={transactions} onDeleteTransaction={deleteTransaction}/>
     </div>
   );
 }
