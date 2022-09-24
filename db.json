@@ -83,6 +83,20 @@
       "description": "Venmo, Pay Roommate for Rent",
       "category": "Housing",
       "amount": -975
+    },
+    {
+      "date": "2022-09-24",
+      "description": "Paid Netflix",
+      "category": "Entertainment",
+      "amount": "1500",
+      "id": 13
+    },
+    {
+      "date": "2022-09-30",
+      "description": "Paid for Apple Music",
+      "category": "Relaxation",
+      "amount": "1.99",
+      "id": 14
     }
   ]
 }

@@ -2,12 +2,22 @@ import React from "react";
 import Transaction from "./Transaction";
 
 
-function TransactionsList({ transactions, onDeleteTransaction }) {
+//Search functionality
+function TransactionsList({ transactions, onDeleteTransaction, search}) {
 
-  const transactionList = transactions.map((transaction) => (
-    <Transaction key={transaction.id} transaction={transaction} onDeleteTransaction={onDeleteTransaction} />
-  ))
-  
+  let transactionList = "Loading transactions..."
+
+  if(transactions){
+    const filteredTransactions = transactions.filter(transaction => {
+      return (
+        transaction.description.toLowerCase().includes(search.toLowerCase())) ||
+        transaction.category.toLowerCase().includes(search.toLowerCase())
+    })
+
+    transactionList = filteredTransactions.map(transaction => {
+      return <Transaction key={transaction.id} transaction={transaction} onDeleteTransaction={onDeleteTransaction}/>
+    })
+  }
 
   return (
     <table className="ui celled striped padded table">

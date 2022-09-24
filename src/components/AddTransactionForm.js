@@ -14,6 +14,7 @@ function AddTransactionForm({ onAddTransaction }) {
   //Post New Transaction to Server
   function handleSubmit (event) {
     event.preventDefault();
+
     fetch(`${transactionsUrl}`, {
       method: "POST",
       headers: {

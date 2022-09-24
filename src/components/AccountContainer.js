@@ -27,11 +27,16 @@ function deleteTransaction(id) {
   const updatedTransactions = transactions.filter(transaction => transaction.id !== id);
   setTransactions(updatedTransactions);
 }
+
+//Search Functionality
+const[search, setSearch] = useState("")
+
+
   return (
     <div>
-      <Search />
+      <Search search={search} setSearch={setSearch}/>
       <AddTransactionForm onAddTransaction={addNewTransaction} />
-      <TransactionsList transactions={transactions} onDeleteTransaction={deleteTransaction}/>
+      <TransactionsList transactions={transactions} onDeleteTransaction={deleteTransaction} search={search}/>
     </div>
   );
 }

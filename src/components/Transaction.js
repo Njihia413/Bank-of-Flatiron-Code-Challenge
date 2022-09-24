@@ -6,6 +6,8 @@ function Transaction({ transaction, onDeleteTransaction }) {
 
   const transactionsUrl = "http://localhost:8001/transactions"
 
+
+  //Delete transaction functionality
   function handleDelete() {
     fetch(`${transactionsUrl}/${id}`, {
       method: "DELETE"
