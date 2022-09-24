@@ -34,8 +34,6 @@ function AddTransactionForm({ onAddTransaction }) {
       [key]: event.target.value
     })
   }
-  console.log(formData)
-
 
     return (
     <div className="ui segment">

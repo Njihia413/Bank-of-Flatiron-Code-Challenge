@@ -32,7 +32,6 @@ function deleteTransaction(id) {
 const[search, setSearch] = useState("")
 
 //Sort Functionality
-//const [sort, setSortOrder] = useState("ASC");
 
   return (
     <div>
