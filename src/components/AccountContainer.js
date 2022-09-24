@@ -31,12 +31,14 @@ function deleteTransaction(id) {
 //Search Functionality
 const[search, setSearch] = useState("")
 
+//Sort Functionality
+//const [sort, setSortOrder] = useState("ASC");
 
   return (
     <div>
       <Search search={search} setSearch={setSearch}/>
       <AddTransactionForm onAddTransaction={addNewTransaction} />
-      <TransactionsList transactions={transactions} onDeleteTransaction={deleteTransaction} search={search}/>
+      <TransactionsList transactions={transactions} onDeleteTransaction={deleteTransaction} search={search} setTransactions={setTransactions}/>
     </div>
   );
 }

@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import Transaction from "./Transaction";
 
 
-//Search functionality
-function TransactionsList({ transactions, onDeleteTransaction, search}) {
+function TransactionsList({ transactions, onDeleteTransaction, search, setTransactions }) {
+  
 
+  //Sorting Functionality
+  const [sortStrategy] = useState({
+    date: -1,
+    description: -1,
+    category: -1,
+    amount: -1
+  })
+  
+  function updateSortStrategy(item){
+    sortStrategy[item] = sortStrategy[item] * -1 
+  }
+
+
+  function sortTransactionList(event){
+    const sortBy  = event.target.textContent.toLowerCase()
+    updateSortStrategy(sortBy)
+
+    let transactionsCopy 
+    
+    if(sortBy === "category" || sortBy === "description"){
+      transactionsCopy = [...transactions].sort((a, b) => {
+        if(a[sortBy].toLowerCase() > b[sortBy].toLowerCase()){
+          return sortStrategy[sortBy]
+        }else if(a[sortBy].toLowerCase() < b[sortBy].toLowerCase()){
+          return sortStrategy[sortBy] * -1
+        }else {
+          return 0
+        }
+      })
+    }
+    setTransactions(transactionsCopy)
+  }
+
+  //Search functionality
   let transactionList = "Loading transactions..."
 
   if(transactions){
@@ -15,7 +49,7 @@ function TransactionsList({ transactions, onDeleteTransaction, search}) {
     })
 
     transactionList = filteredTransactions.map(transaction => {
-      return <Transaction key={transaction.id} transaction={transaction} onDeleteTransaction={onDeleteTransaction}/>
+      return <Transaction key={transaction.id} transaction={transaction} onDeleteTransaction={onDeleteTransaction} setTransactions={setTransactions}/>
     })
   }
 
@@ -27,10 +61,10 @@ function TransactionsList({ transactions, onDeleteTransaction, search}) {
             <h3 className="ui center aligned header">Date</h3>
           </th>
           <th>
-            <h3 className="ui center aligned header">Description</h3>
+            <h3 className="ui center aligned header" onClick={sortTransactionList}>Description<i className="fa-solid fa-sort"></i></h3>
           </th>
           <th>
-            <h3 className="ui center aligned header">Category</h3>
+            <h3 className="ui center aligned header" onClick={sortTransactionList}>Category<i className="fa-solid fa-sort"></i></h3>
           </th>
           <th>
             <h3 className="ui center aligned header">Amount</h3>
@@ -39,8 +73,7 @@ function TransactionsList({ transactions, onDeleteTransaction, search}) {
             <h3 className="ui center aligned header">Action</h3>
           </th>
         </tr>
-        {/* render a list of <Transaction> components here */}
-          {transactionList}
+        {transactionList}
       </tbody>
     </table>
   );

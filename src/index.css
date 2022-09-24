@@ -30,3 +30,7 @@ body {
   color: red;
   cursor: pointer;
 }
+
+.fa-sort {
+  margin-inline: 10px;
+}
